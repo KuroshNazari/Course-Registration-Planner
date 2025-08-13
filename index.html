@@ -1,52 +1,89 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دستیار انتخاب واحد</title>
-<meta name="description" content="یک ابزار ساده و کاربردی برای مدیریت گزینه های انتخاب واحد">
-<link rel="icon" href="static/KNTU - dark.svg" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دستیار انتخاب واحد</title>
+    <meta name="description" content="یک ابزار ساده و کاربردی برای مدیریت گزینه های انتخاب واحد">
+    <link rel="icon" href="static/KNTU - dark.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
 
-<header>
-    <img src="static/KNTU.svg" alt="Logo">
-    <div class="header-actions">
-        <!-- Toggler replaces the old button -->
-        <div class="theme-toggle">
-            <input type="checkbox" id="modeSwitch" aria-label="تغییر حالت تیره/روشن">
-            <label for="modeSwitch"></label>
+    <header>
+        <div class="header-left">
+            <img src="static/KNTU.svg" alt="Logo">
+            <span class="header-title">دستیار انتخاب واحد</span>
         </div>
-        <button class="btn" onclick="openContactForm()">تماس با توسعه‌دهنده</button>
-    </div>
-</header>
+        <div class="header-actions">
+            <div class="theme-toggle">
+                <input type="checkbox" id="modeSwitch" aria-label="تغییر حالت تیره/روشن">
+                <label for="modeSwitch" title="تغییر حالت تیره/روشن">
+                    <span class="sun-icon">🌞</span>
+                    <span class="moon-icon">🌙</span>
+                </label>
+            </div>
+            <button class="btn" onclick="openContactForm()">تماس با توسعه‌دهنده</button>
+        </div>
+    </header>
 
-<div class="planner-container">
-    <div>
-        <h3>گزینه‌ها</h3>
-        <div class="table" id="optionsTable"></div>
+    <div class="planner-container">
+        <div>
+            <h3>گزینه‌ها</h3>
+            <div class="table" id="optionsTable"></div>
+        </div>
+        <div>
+            <h3>منتخب</h3>
+            <div class="table" id="chosenTable"></div>
+        </div>
     </div>
-    <div>
-        <h3>منتخب</h3>
-        <div class="table" id="chosenTable"></div>
-    </div>
-</div>
 
-<!-- Contact Form Modal -->
-<div class="modal" id="contactModal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeContactForm()">&times;</span>
-        <h2>تماس با توسعه‌دهنده</h2>
-        <input type="text" placeholder="نام" id="name" required>
-        <input type="email" placeholder="ایمیل" id="email" required>
-        <textarea placeholder="پیام" rows="4" id="message" required></textarea>
-        <button onclick="submitContact()">ارسال</button>
+    <!-- Contact Form Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeContactForm()">&times;</span>
+            <h2>تماس با توسعه‌دهنده</h2>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="نام" required>
+                <input type="email" name="email" placeholder="ایمیل" required>
+                <textarea name="message" placeholder="پیام" rows="4" required></textarea>
+                <button type="submit">ارسال</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('successModal')">&times;</span>
+            <h2>پیام ارسال شد!</h2>
+            <p>با تشکر از تماس شما.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('errorModal')">&times;</span>
+            <h2>خطا!</h2>
+            <p>ارسال پیام با مشکل مواجه شد. دوباره تلاش کنید.</p>
+        </div>
+    </div>
+
+
+    <!-- Add Option Modal -->
+    <div class="modal" id="optionModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeOptionForm()">&times;</span>
+            <h2>افزودن گزینه</h2>
+            <input type="text" id="optionTitle" placeholder="عنوان درس" required>
+            <input type="number" id="optionCode" placeholder="کد درس">
+            <button onclick="submitOption()">افزودن</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact_form.js"></script>
 
 </body>
+
 </html>
